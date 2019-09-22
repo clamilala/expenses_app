@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pay_ymd: 2019-09-22
+  classification_id: MyString
+  amount: 1
+  remarks: MyText
+
+two:
+  pay_ymd: 2019-09-22
+  classification_id: MyString
+  amount: 1
+  remarks: MyText

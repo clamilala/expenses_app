@@ -1,0 +1,23 @@
+<!-- application.html.erb にHTMLタグ等が記述されているため、このファイルには記載不要 -->
+<!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
+<div class="container">
+  <h1>ここに家計簿を作りたい</h1>
+ 
+  
+  <%= form_tag("/create") do %>
+    <p>日付</p>
+    <input name="pay_ymd" type="date">
+    <p>金額</p>
+    <input name="amount" type="number">
+    <input type="submit" value="登録">
+  <% end %>
+  
+  <div class="container">
+    
+    <% @payments.each do |pay| %>
+    <ul>
+      <li>ID：<%= pay.id %>，日付：<%= pay.pay_ymd %>，分類：<%= pay.classification_id %>，金額：<%= pay.amount %>，内容：<%= pay.remarks %>，<%= link_to("削除", "/#{pay.id}/destroy") %></li>
+    </ul>
+    <% end %>
+  </div>
+</div>

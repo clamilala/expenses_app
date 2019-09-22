@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Web家計簿</title>
+    <link rel="stylesheet" href="assets/stylesheet.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- 以下は rails new で自動生成されたコード。エラーを吐くため、一旦コメントアウト -->
+    <!-- < %= csrf_meta_tags %> -->
+    <!-- < %= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %> -->
+    <!-- < %= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <p>予算</p>
+        <p>一覧</p>
+        <p>マスタメンテナンス</p>
+      </div>
+    </header>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+    
+    <footer>
+      <div class="container">
+        フッター部分
+      </div>
+    </footer>
+  </body>
+</html>
