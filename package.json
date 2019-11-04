@@ -1,5 +1,14 @@
 {
   "name": "expenses_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@rails/webpacker": "3.5",
+    "bootstrap": "4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }
