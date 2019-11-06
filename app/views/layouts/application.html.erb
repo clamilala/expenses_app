@@ -16,12 +16,12 @@
   </head>
   <body>
     <header>
-      <div class="container">
-          ヘッダー部分
-        <p>予算</p>
-        <p>一覧</p>
-        <p>マスタメンテナンス</p>
-      </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="#" class="navbar-brand">一覧</a>
+            <a href="#" class="navbar-brand">登録</a>
+            <!-- <a href="#" class="navbar-brand">予算</a> -->
+            <!-- <a href="#" class="navbar-brand">マスタメンテナンス</a> -->
+        </nav>
     </header>
     <% if flash[:notice] %>
       <div class="flash">
@@ -33,7 +33,9 @@
     
     <footer>
       <div class="container">
-        フッター部分
+          <nav class="navbar fixed-bottom navbar-dark bg-dark">
+              <a href="#" class="navbar-brand">フッター部分</a>
+          </nav>
       </div>
     </footer>
       
