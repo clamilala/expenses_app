@@ -1,0 +1,9 @@
+
+<div class="container">
+    <table class="table">
+        <tr><th>ID</th><th>日付</th><th>分類</th><th>金額</th><th>内容</th><th>削除</th></tr>
+        <% @payments.each do |pay| %>
+        <tr><td><%= pay.id %></td><td><%= pay.pay_ymd %></td><td><%= pay.classification_id %></td><td><%= pay.amount %></td><td><%= pay.remarks %></td><td><%= link_to("削除", "/#{pay.id}/destroy") %></td></tr>
+        <% end %>
+    </table>
+</div>

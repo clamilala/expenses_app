@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/home/top.html.erb</file>
             <file>file:/C:/Ruby/NetBeansProjects/expenses_app/config/environments/development.rb</file>
+            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/db/migrate/20190922054501_create_payments.rb</file>
             <file>file:/C:/Ruby/NetBeansProjects/expenses_app/config/environments/production.rb</file>
             <file>file:/C:/Ruby/NetBeansProjects/expenses_app/Gemfile</file>
             <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/layouts/application.html.erb</file>

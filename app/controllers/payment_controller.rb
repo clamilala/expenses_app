@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class PaymentController < ApplicationController
   def top
     @payments = Payment.all.order(created_at: :desc)
   end

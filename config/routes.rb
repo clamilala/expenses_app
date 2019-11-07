@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  get ':id/destroy' => 'home#destroy'
+  get 'list/top' => 'list#top'
+
+  get ':id/destroy' => 'payment#destroy'
   #homeコントローラーのtopアクションに飛ばす
-  get 'home/top' => 'home#top'
-  get '/' => 'home#top'
-  post 'create' => 'home#create'
+  get 'payment/top' => 'payment#top'
+  get '/' => 'payment#top'
+  post 'create' => 'payment#create'
 end
