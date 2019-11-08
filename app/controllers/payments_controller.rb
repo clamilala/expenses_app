@@ -1,5 +1,6 @@
-class PaymentController < ApplicationController
-  def top
+class PaymentsController < ApplicationController
+  
+  def index
     @payments = Payment.all.order(created_at: :desc)
   end
   
@@ -14,6 +15,9 @@ class PaymentController < ApplicationController
     
   end
   
+  def edit
+    
+  end
   def destroy
     @payments = Payment.find_by(id: params[:id])
     if @payments.destroy 

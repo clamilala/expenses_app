@@ -17,9 +17,8 @@
   <body>
     <header>
         <nav class="navbar fixed-top navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">一覧</a>
-            <%= link_to "一覧", "list/top" %>
-            <a href="#" class="navbar-brand">登録</a>
+            <%= link_to "一覧", payments_path, class:"navbar-brand" %>
+            <%= link_to "登録", new_payment_path, class:"navbar-brand" %>
             <!-- <a href="#" class="navbar-brand">予算</a> -->
             <!-- <a href="#" class="navbar-brand">マスタメンテナンス</a> -->
         </nav>

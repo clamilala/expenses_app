@@ -1,0 +1,18 @@
+<!-- application.html.erb にHTMLタグ等が記述されているため、このファイルには記載不要 -->
+<!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+</div>
+
+<div class="container">
+    <table class="table table-hover">
+        <tr><th>ID</th><th>日付</th><th>分類</th><th>金額</th><th>内容</th><th>削除</th></tr>
+        <% @payments.each do |pay| %>
+        <tr><td><%= pay.id %></td><td><%= link_to "#{pay.pay_ymd}", edit_payment_path(pay) %></td><td><%= pay.classification_id %></td><td class="text-right"><%= pay.amount.to_s(:delimited) %></td><td><%= pay.remarks %></td><td><%= link_to("削除", "/#{pay.id}/destroy") %></td></tr>
+        <% end %>
+    </table>
+</div>
+
