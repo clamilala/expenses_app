@@ -18,6 +18,7 @@ class PaymentsController < ApplicationController
     @paytypes = PayType.all
   end
   
+  
   # GET /payments/1/edit
   def edit
   end
@@ -27,7 +28,7 @@ class PaymentsController < ApplicationController
   def create
     @payments = Payment.new(
       pay_ymd: params[:pay_ymd],
-      pay_type: params[:pay_type],
+      pay_type_name: params[:pay_type_name],
       amount: params[:amount],
       remarks: params[:remarks]
     )

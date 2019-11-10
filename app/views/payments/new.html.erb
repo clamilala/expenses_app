@@ -12,7 +12,7 @@
       <div class="form-group row">
           <label for="text3a" class="col-sm-2 col-form-label">分類</label>
           <div class="col-sm-10">
-              <select name="pay_type" class="form-control">
+              <select name="pay_type_name" class="form-control">
                   <option>未分類</option>
                   <% @paytypes.each do |paytype| %>
                     <option><%= paytype.pay_type_name  %></option>
