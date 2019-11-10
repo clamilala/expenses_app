@@ -16,4 +16,5 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+$icon-font-path: '~open-iconic/font/fonts/'; // ModuleNotFoundError エラー対策
 @import 'open-iconic/font/css/open-iconic-bootstrap.css';
