@@ -1,0 +1,15 @@
+
+<div class="container">
+    <%= link_to("新規分類を追加", "/appsettings/pay_type_index/new", role: "button" , class: "btn btn-outline-primary btn-block" ) %>
+    <br>
+    <table class="table table-bordered">
+        <thead class="thead-light text-center">
+            <tr><th>分類名</th><th>削除</th></tr>
+        </thead>
+        <tbody>
+            <% @paytypes.each do |paytype| %>
+            <tr><td><%= paytype.pay_type_name %></td><td><%= link_to("削除", "/appsettings/pay_type_index/#{paytype.id}", :method => :delete) %></td></tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

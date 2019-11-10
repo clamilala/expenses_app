@@ -2,17 +2,15 @@
 <!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
 
 <div class="container">
-    <br>
-    <br>
-    <br>
-</div>
-
-<div class="container">
-    <table class="table table-hover">
-        <tr><th>ID</th><th>日付</th><th>分類</th><th>金額</th><th>内容</th><th>削除</th></tr>
-        <% @payments.each do |pay| %>
-        <tr><td><%= pay.id %></td><td><%= link_to "#{pay.pay_ymd}", edit_payment_path(pay) %></td><td><%= pay.classification_id %></td><td class="text-right"><%= pay.amount.to_s(:delimited) %></td><td><%= pay.remarks %></td><td><%= link_to("削除", "/#{pay.id}/destroy") %></td></tr>
-        <% end %>
+    <table class="table table-bordered">
+        <thead class="thead-light text-center">
+            <tr><th>日付</th><th>分類</th><th>金額</th><th>内容</th><th>削除</th></tr>
+        </thead>
+        <tbody>
+            <% @payments.each do |pay| %>
+            <tr><td><%= link_to "#{pay.pay_ymd}", edit_payment_path(pay) %></td><td><%= pay.pay_type %></td><td class="text-right"><%= pay.amount.to_s(:delimited) %></td><td><%= pay.remarks %></td><td><%= link_to("削除", "/payments/#{pay.id}", :method => :delete) %></td></tr>
+            <% end %>
+        </tbody>
     </table>
 </div>
 

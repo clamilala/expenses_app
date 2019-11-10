@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="assets/open-iconic/font/css/open-iconic-bootstrap.css">
+    <!-- Open Iconic — www.useiconic.com/open -->
+    
+    <%= javascript_include_tag "application" %>
     <title>Web家計簿</title>
-    <!-- <link rel="stylesheet" href="assets/stylesheet.css"> -->
-    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
 
     <!-- 以下は rails new で自動生成されたコード。エラーを吐くため、一旦コメントアウト -->
     <!-- < %= csrf_meta_tags %> -->
@@ -19,10 +20,14 @@
         <nav class="navbar fixed-top navbar-dark bg-dark">
             <%= link_to "一覧", payments_path, class:"navbar-brand" %>
             <%= link_to "登録", new_payment_path, class:"navbar-brand" %>
-            <!-- <a href="#" class="navbar-brand">予算</a> -->
-            <!-- <a href="#" class="navbar-brand">マスタメンテナンス</a> -->
+            <%= link_to "設定", appsettings_path, class:"navbar-brand" %>
         </nav>
     </header>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+    </div>
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
