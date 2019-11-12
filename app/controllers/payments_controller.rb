@@ -37,7 +37,7 @@ class PaymentsController < ApplicationController
     )
     
     if @payments.save
-      redirect_to @payments, notice: "登録しました。"
+      redirect_to "/", notice: "登録しました。"
     else
       @paytypes = PayType.all
       render :new
