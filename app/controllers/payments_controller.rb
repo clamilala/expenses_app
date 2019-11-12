@@ -15,6 +15,7 @@ class PaymentsController < ApplicationController
   
   # GET /payments/new
   def new
+    @payments = Payment.new
     @paytypes = PayType.all
   end
   
@@ -26,6 +27,8 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
+    
+    
     @payments = Payment.new(
       pay_ymd: params[:pay_ymd],
       pay_type_name: params[:pay_type_name],
@@ -33,8 +36,12 @@ class PaymentsController < ApplicationController
       remarks: params[:remarks]
     )
     
-    @payments.save
-    redirect_to("/")
+    if @payments.save
+      redirect_to @payments, notice: "登録しました。"
+    else
+      @paytypes = PayType.all
+      render :new
+    end
     
   end
   
