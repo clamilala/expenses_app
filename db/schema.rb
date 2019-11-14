@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191110045621) do
+ActiveRecord::Schema.define(version: 20191114165108) do
 
   create_table "pay_types", force: :cascade do |t|
     t.string "pay_type_name", null: false
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20191110045621) do
     t.text "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "login_id", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["login_id"], name: "index_users_on_login_id", unique: true
   end
 
 end
