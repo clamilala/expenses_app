@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  
   resources :payments
   get '/' => 'payments#index'
   
