@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get '/users/new' => 'users#new'
+  post '/users/' => 'users#create'
+  get '/users/edit' => 'users#edit'
+  get '/users/show'  => 'users#show'
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   
