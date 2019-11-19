@@ -5,12 +5,9 @@
         <group>
             <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/users/new.html.erb</file>
             <file>file:/C:/Ruby/NetBeansProjects/expenses_app/config/routes.rb</file>
-            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/controllers/payments_controller.rb</file>
-            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/controllers/sessions_controller.rb</file>
-            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/controllers/users_controller.rb</file>
-            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/layouts/application.html.erb</file>
-            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/appsettings/index.html.erb</file>
-            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/sessions/new.html.erb</file>
+            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/users/_form.html.erb</file>
+            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/users/edit.html.erb</file>
+            <file>file:/C:/Ruby/NetBeansProjects/expenses_app/app/views/payments/new.html.erb</file>
         </group>
     </open-files>
 </project-private>

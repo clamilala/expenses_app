@@ -4,13 +4,12 @@
 <div class="container">
     <table class="table table-bordered">
         <thead class="thead-light text-center">
-            <tr><th>日付</th><th>分類</th><th>金額</th><th>内容</th><th>削除</th></tr>
+            <tr><th>日付</th><th>分類</th><th>金額</th><th>内容</th><th>編集</th><th>削除</th></tr>
         </thead>
         <tbody>
             <% @payments.each do |pay| %>
-            <tr><td><%= link_to "#{pay.pay_ymd}", edit_payment_path(pay) %></td><td><%= pay.pay_type_name %></td><td class="text-right"><%= pay.amount.to_s(:delimited) %></td><td><%= pay.remarks %></td><td><%= link_to("削除", "/payments/#{pay.id}", :method => :delete) %></td></tr>
+            <tr><td><%= pay.pay_ymd %></td><td><%= pay.pay_type_name %></td><td class="text-right"><%= pay.amount.to_s(:delimited) %></td><td><%= pay.remarks %></td><td><%= link_to "編集", edit_payment_path(pay) %></td><td><%= link_to("削除", "/payments/#{pay.id}", :method => :delete) %></td></tr>
             <% end %>
         </tbody>
     </table>
 </div>
-

@@ -22,6 +22,8 @@ class PaymentsController < ApplicationController
   
   # GET /payments/1/edit
   def edit
+    @payments = Payment.new
+    @paytypes = PayType.all
   end
   
   # POST /payments
