@@ -1,47 +1,12 @@
 
-<div class="container">
+<div class="container align-self-center col-md-6">
 
   <% if @payments.errors.present? %>
     <% @payments.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   <% end %>
-  <div class="form-group justify-content-center">
-    <%= form_tag(payments_path) do %>
-      <div class="form-group row">
-          <label for="text3a" class="col-sm-2 col-form-label">日付</label>
-          <div class="col-sm-10">
-              <input name="pay_ymd" type="date" value="<%= Time.now.strftime("%Y-%m-%d") =%>">
-          </div>
-      </div>
-      <div class="form-group row">
-          <label for="text3a" class="col-sm-2 col-form-label">分類</label>
-          <div class="col-sm-10">
-              <select name="pay_type_name" class="form-control">
-                  <option>未分類</option>
-                  <% @paytypes.each do |paytype| %>
-                    <option><%= paytype.pay_type_name  %></option>
-                   <% end %>
-              </select>
-          </div>
-      </div>
-      <div class="form-group row">
-          <label for="text3a" class="col-sm-2 col-form-label">金額</label>
-          <div class="col-sm-10">
-              <input name="amount" type="number" class="form-control" value="0">
-          </div>
-      </div>
-      <div class="form-group row">
-          <label for="text3a" class="col-sm-2 col-form-label">内容</label>
-          <div class="col-sm-10">
-              <input name=":remarks" type="text" value="">
-          </div>
-      </div>
-      <div class="form-group row">
-          <div class="col-sm-10">
-            <input type="submit" class="btn btn-primary" value="登録">
-          </div>
-      </div>
-    <% end %>
+  <div class="form-group ">
+      <%= render 'form' %>
   </div>
 </div>

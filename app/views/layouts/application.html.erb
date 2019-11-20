@@ -19,9 +19,9 @@
   <body>
     <header>
         <nav class="navbar fixed-top navbar-dark bg-dark">
-            <%= link_to "一覧", payments_path, class:"navbar-brand" %>
-            <%= link_to "登録", new_payment_path, class:"navbar-brand" %>
-            <%= link_to "設定", appsettings_path, class:"navbar-brand" %>
+              <%= link_to "一覧", payments_path, class:"btn btn-info", role: "button col-10" %>
+              <%= link_to "登録", new_payment_path, class:"btn btn-info", role: "button" %>
+              <%= link_to "設定", appsettings_path, class:"btn btn-info", role: "button"  %>
         </nav>
     </header>
     <div class="container">
@@ -34,9 +34,9 @@
         <%= flash[:notice] %>
       </div>
     <% end %>
-    
-    <%= yield %>
-    
+    <div class="container">
+      <%= yield %>
+    </div>
     <footer>
     <!--
         <div class="container">
