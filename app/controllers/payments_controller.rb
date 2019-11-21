@@ -15,14 +15,14 @@ class PaymentsController < ApplicationController
   
   # GET /payments/new
   def new
-    @payments = Payment.new
+    @payment = Payment.new
     @paytypes = PayType.all
   end
   
   
   # GET /payments/1/edit
   def edit
-    @payments = Payment.new
+    @payment = Payment.find(params[:id])
     @paytypes = PayType.all
   end
   
@@ -31,14 +31,14 @@ class PaymentsController < ApplicationController
   def create
     
     
-    @payments = Payment.new(
+    @payment = Payment.new(
       pay_ymd: params[:pay_ymd],
       pay_type_name: params[:pay_type_name],
       amount: params[:amount],
       remarks: params[:remarks]
     )
     
-    if @payments.save
+    if @payment.save
       redirect_to "/", notice: "登録しました。"
     else
       @paytypes = PayType.all
