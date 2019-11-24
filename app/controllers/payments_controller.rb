@@ -31,13 +31,13 @@ class PaymentsController < ApplicationController
   def create
     
     
-    @payment = Payment.new(
-      pay_ymd: params[:pay_ymd],
-      pay_type_name: params[:pay_type_name],
-      amount: params[:amount],
-      remarks: params[:remarks]
-    )
-    
+#    @payment = Payment.new(
+#      pay_ymd: params[:pay_ymd],
+#      pay_type_name: params[:pay_type_name],
+#      amount: params[:amount],
+#      remarks: params[:remarks]
+#    )
+    @payment = Payment.new(payment_params)
     if @payment.save
       redirect_to "/", notice: "登録しました。"
     else
@@ -62,19 +62,24 @@ class PaymentsController < ApplicationController
 #    end
 #  end
   
-#  # PATCH/PUT /users/1
-#  # PATCH/PUT /users/1.json
-#  def update
-#    respond_to do |format|
-#      if @user.update(user_params)
-#        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-#        format.json { render :show, status: :ok, location: @user }
-#      else
-#        format.html { render :edit }
-#        format.json { render json: @user.errors, status: :unprocessable_entity }
-#      end
-#    end
-#  end
+  # PATCH/PUT /users/1
+  # PATCH/PUT /users/1.json
+  def update
+    @payment = Payment.find(params[:id])
+    
+    if @payment.update(payment_params)
+#      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+#      format.json { render :show, status: :ok, location: @user }
+      flash[:notice] = "更新に成功しました"
+      redirect_to("/")
+    else
+#      format.html { render :edit }
+#      format.json { render json: @user.errors, status: :unprocessable_entity }
+      flash[:notice] = "更新に失敗しました"
+      render 'edit'
+    end
+
+  end
   
   def destroy
     @payments = Payment.find_by(id: params[:id])
@@ -97,7 +102,10 @@ class PaymentsController < ApplicationController
 #  end
 #  
 
-#  private
+  private
+    def payment_params
+      params.require(:payment).permit(:pay_ymd, :pay_type_name, :amount, :remarks)
+    end
 #    # Use callbacks to share common setup or constraints between actions.
 #    def set_user
 #      @user = User.find(params[:id])
@@ -107,5 +115,6 @@ class PaymentsController < ApplicationController
 #    def user_params
 #      params.require(:user).permit(:name, :address, :age)
 #    end
-    
+   
+  
 end

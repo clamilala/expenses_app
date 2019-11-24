@@ -1,31 +1,22 @@
-<%= form_with model: @payment , url: payments_path, local: true do |form| %>
+<!-- < %= form_with model: @payment , url: payments_path, local: true do |form| %> -->
 <!-- < %= form_tag(payments_path) do %>--->
+
+<%= form_with model: @payment , local: true do |form| %>
   <div class="form-group row">
-    <label for="pay_ymd" class="col-sm-3 col-form-label">日付</label>
-    <div class="col-sm-9">
-      <input id="pay_ymd" name="pay_ymd" type="date" class="col-sm-9" value="<%= Time.now.strftime("%Y-%m-%d") =%>">
-    </div>
+    <label class="col-sm-3 col-form-label" for="pay_ymd">日付</label>
+    <%= form.date_field :pay_ymd, class: "form-control col-sm-9", id: "pay_ymd" %>
   </div>
   <div class="form-group row">
-      <label for="text3a" class="col-sm-3 col-form-label">分類</label>
-      <div class="col-sm-9">
-          <select name="pay_type_name" class="form-control">
-              <option>未分類</option>
-              <% @paytypes.each do |paytype| %>
-                <option><%= paytype.pay_type_name  %></option>
-               <% end %>
-          </select>
-      </div>
+      <label class="col-sm-3 col-form-label" for="pay_type_name">分類</label>
+      <%= form.collection_select( :pay_type_name, @paytypes, :pay_type_name, :pay_type_name, {prompt: nil}, {class: "form-control col-sm-9"})  %>
   </div>
   <div class="form-group row">
-      <label for="text3a" class="col-sm-3 col-form-label">金額</label>
-      <div class="col-sm-9">
-          <input name="amount" type="number" class="form-control" value="0">
-      </div>
+      <label class="col-sm-3 col-form-label" for="payment_amount">金額</label>
+      <%= form.number_field :amount, class: "form-control col-sm-9", id: "payment_amount" %>
   </div>
   <div class="form-group row">
-      <label for="text3a" class="col-sm-3 col-form-label">内容</label>
-      <%= form.text_field :remarks, class: "form-control col-sm-9" %>
+      <label class="col-sm-3 col-form-label" for="payment_remarks">備考</label>
+      <%= form.text_field :remarks, class: "form-control col-sm-9", id: "payment_remarks" %>
   </div>
   <div class="form-group row justify-content-between">
         <input type="submit" class="btn btn-primary col-sm" value="登録">
