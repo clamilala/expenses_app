@@ -2,8 +2,8 @@
 <div class="container">
     <div class="row text-center">
         <div class="col">
-            <h1 class="display-2"><%= link_to("", "login", {class: "fa fa-user"}) %></h1>
-            <p><%= link_to("ログイン", "login") %></p>
+            <h1 class="display-2"><%= link_to("", "/logout", {method: :delete, class: "fa fa-user"}) %></h1>
+            <p><%= link_to("ログアウト", "/logout", :method => :delete) %></p>
         </div>
         <div class="col">
             <h1 class="display-2"><%= link_to("", "appsettings/pay_type_index", {class: "fa fa-folder"}) %></h1>

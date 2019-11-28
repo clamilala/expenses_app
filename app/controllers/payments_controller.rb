@@ -17,6 +17,10 @@ class PaymentsController < ApplicationController
   def new
     @payment = Payment.new
     @paytypes = PayType.all
+    
+    #pay_ymdに初期値（今日の日付）をセット
+    @payment.pay_ymd = Time.now.strftime("%Y-%m-%d")
+    
   end
   
   

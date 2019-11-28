@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
     <%= javascript_include_tag 'application' %>
-    <%= stylesheet_link_tag    'application'%>
+    <%= stylesheet_link_tag    'application' %>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <!-- Open Iconic — www.useiconic.com/open -->
 
@@ -21,9 +22,13 @@
   <body>
     <header>
         <nav class="navbar fixed-top navbar-dark bg-dark">
-              <%= link_to "一覧", payments_path, class:"btn btn-info", role: "button col-10" %>
-              <%= link_to "登録", new_payment_path, class:"btn btn-info", role: "button" %>
-              <%= link_to "設定", appsettings_path, class:"btn btn-info", role: "button"  %>
+            <%= link_to "一覧", payments_path, class:"btn btn-info", role: "button col-10" %>
+            <%= link_to "登録", new_payment_path, class:"btn btn-info", role: "button" %>
+            <% if current_user %>
+              <%= link_to "設定", appsettings_path, class:"btn btn-info", role: "button" %>
+            <% else %>
+              <%= link_to "ログイン", "/login", class:"btn btn-info", role: "button" %>
+            <% end %>
         </nav>
     </header>
     <div class="container">

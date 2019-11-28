@@ -1,5 +1,6 @@
 class AppsettingsController < ApplicationController
   protect_from_forgery 
+  before_action :login_required
   
   def index
     
