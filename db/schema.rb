@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191114165108) do
+ActiveRecord::Schema.define(version: 20191129235632) do
 
   create_table "pay_types", force: :cascade do |t|
     t.string "pay_type_name", null: false
+    t.boolean "default_sgn", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_pay_types_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -25,6 +28,8 @@ ActiveRecord::Schema.define(version: 20191114165108) do
     t.text "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
