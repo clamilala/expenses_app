@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   post '/users/' => 'users#create'
   get '/users/edit' => 'users#edit'
   get '/users/show'  => 'users#show'
+  delete '/user/destroy' => 'users#destroy'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
-  
   
   resources :payments
   get '/' => 'payments#index'

@@ -5,7 +5,13 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.all.order(created_at: :desc)
+    if current_user
+      user_id = current_user.id
+    else
+      user_id = nil
+    end
+#    @payments = Payment.all.order(created_at: :desc)
+    @payments = Payment.where(user_id: user_id).order(created_at: :desc)
   end
   
   # GET /payments/1
@@ -16,11 +22,16 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
-    @paytypes = PayType.all
     
+    if current_user
+      @paytypes = PayType.where(user_id: current_user.id)
+    else
+      @paytypes = PayType.where(user_id: nil)
+    end
+    # = PayType.all
     #pay_ymdに初期値（今日の日付）をセット
     @payment.pay_ymd = Time.now.strftime("%Y-%m-%d")
-    
+    @payment.amount = 0
   end
   
   
@@ -33,15 +44,10 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
-    
-    
-#    @payment = Payment.new(
-#      pay_ymd: params[:pay_ymd],
-#      pay_type_name: params[:pay_type_name],
-#      amount: params[:amount],
-#      remarks: params[:remarks]
-#    )
+
     @payment = Payment.new(payment_params)
+    @payment.user_id = current_user.id if current_user
+    
     if @payment.save
       redirect_to "/", notice: "登録しました。"
     else
