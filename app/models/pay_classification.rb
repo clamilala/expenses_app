@@ -1,0 +1,2 @@
+class PayClassification < ApplicationRecord
+end

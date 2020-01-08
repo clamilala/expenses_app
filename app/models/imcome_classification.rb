@@ -1,0 +1,2 @@
+class ImcomeClassification < ApplicationRecord
+end

@@ -1,5 +1,5 @@
 class JounalEntriesController < ApplicationController
-  protect_from_forgery 
+  protect_from_forgery
   #before_action :set_user, only: [:show, :edit, :update, :destroy]  
   
   # GET /JounalEntries
@@ -10,8 +10,8 @@ class JounalEntriesController < ApplicationController
     else
       user_id = nil
     end
-#    @JounalEntries = JounalEntry.all.order(created_at: :desc)
-    @JounalEntries = JounalEntry.where(user_id: user_id).order(created_at: :desc)
+    #@jounal_entries = JounalEntry.all.order(created_at: :desc)
+    @jounal_entries = JounalEntry.where(user_id: user_id).order(created_at: :desc)
   end
   
   # GET /JounalEntries/1
@@ -21,37 +21,38 @@ class JounalEntriesController < ApplicationController
   
   # GET /JounalEntries/new
   def new
-    @JounalEntry = JounalEntry.new
-    
+    @jounal_entry = JounalEntry.new
+
     if current_user
-      @paytypes = PayType.where(user_id: current_user.id)
+      @payclassifications = PayClassification.where(user_id: current_user.id)
     else
-      @paytypes = PayType.where(user_id: nil)
+      @payclassifications = PayClassification.where(user_id: nil)
     end
     # = PayType.all
     #pay_ymdに初期値（今日の日付）をセット
-    @JounalEntry.pay_ymd = Time.now.strftime("%Y-%m-%d")
-    @JounalEntry.amount = 0
+    @jounal_entry.ymd = Time.now.strftime("%Y-%m-%d")
+    @jounal_entry.pay_amount = 0
   end
-  
-  
+
+
   # GET /JounalEntries/1/edit
   def edit
-    @JounalEntry = JounalEntry.find(params[:id])
-    @paytypes = PayType.all
+
+    @jounal_entry = JounalEntry.find(params[:id])
+    @payclassifications = PayClassification.all
   end
   
   # POST /JounalEntries
   # POST /JounalEntries.json
   def create
 
-    @JounalEntry = JounalEntry.new(JounalEntry_params)
-    @JounalEntry.user_id = current_user.id if current_user
+    @jounal_entry = JounalEntry.new(jounal_entry_params)
+    @jounal_entry.user_id = current_user.id if current_user
     
-    if @JounalEntry.save
+    if @jounal_entry.save
       redirect_to "/", notice: "登録しました。"
     else
-      @paytypes = PayType.all
+      @payclassifications = PayClassification.all
       render :new
     end
     
@@ -75,11 +76,11 @@ class JounalEntriesController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @JounalEntry = JounalEntry.find(params[:id])
+    @jounal_entry = JounalEntry.find(params[:id])
     
-    if @JounalEntry.update(JounalEntry_params)
+    if @jounal_entry.update(jounal_entry_params)
 #      format.html { redirect_to @user, notice: 'User was successfully updated.' }
-#      format.json { render :show, status: :ok, location: @user }
+    #      format.json { render :show, status: :ok, location: @user }
       flash[:notice] = "更新に成功しました"
       redirect_to("/")
     else
@@ -92,8 +93,8 @@ class JounalEntriesController < ApplicationController
   end
   
   def destroy
-    @JounalEntries = JounalEntry.find_by(id: params[:id])
-    if @JounalEntries.destroy 
+    @jounal_entries = JounalEntry.find_by(id: params[:id])
+    if @jounal_entries.destroy 
       flash[:notice] = "削除に成功しました"
     else
       flash[:notice] = "削除に失敗しました"
@@ -113,8 +114,9 @@ class JounalEntriesController < ApplicationController
 #  
 
   private
-    def JounalEntry_params
-      params.require(:JounalEntry).permit(:pay_ymd, :pay_type_name, :amount, :remarks)
+    def jounal_entry_params
+      #params.require(:jounalEntry).permit(:ymd, :pay_classification_name, :pay_amount, :remarks)
+      params.require(:jounal_entry).permit(:ymd, :pay_amount, :remarks)
     end
 #    # Use callbacks to share common setup or constraints between actions.
 #    def set_user

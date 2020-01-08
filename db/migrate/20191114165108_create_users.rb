@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.timestamps
       
       #
-      t.index :login_id, unique:true
+      t.index :login_id, unique: true
     end
   end
 end

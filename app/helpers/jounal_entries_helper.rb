@@ -1,0 +1,2 @@
+module JounalEntriesHelper
+end
