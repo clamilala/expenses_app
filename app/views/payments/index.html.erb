@@ -7,12 +7,12 @@
             <tr><th>日付</th><th>分類</th><th>金額</th><th>内容</th><th>編集</th><th>削除</th></tr>
         </thead>
         <tbody>
-            <% @JounalEntries.each do |JounalEntry| %>
+            <% @jounal_entries.each do |jounal_entry| %>
             <tr>
-                <td><%= JounalEntry.ymd %></td><td><%= JounalEntry.pay_classification.name %></td>
-                <td class="text-right"><%= JounalEntry.pay_amount.to_s(:delimited) %></td>
-                <td><%= JounalEntry.remarks %></td><td><%= link_to "編集", edit_JounalEntryment_path(JounalEntry) %></td>
-                <td><%= link_to("削除", "/JounalEntries/#{JounalEntry.id}", :method => :delete) %></td>
+                <td><%= jounal_entry.ymd %></td><td><%= jounal_entry.pay_classification.name %></td>
+                <td class="text-right"><%= jounal_entry.pay_amount.to_s(:delimited) %></td>
+                <td><%= jounal_entry.remarks %></td><td><%= link_to "編集", edit_jounal_entry_path(jounal_entry) %></td>
+                <td><%= link_to("削除", "/jounal_entries/#{jounal_entry.id}", :method => :delete) %></td>
             </tr>
             <% end %>
         </tbody>

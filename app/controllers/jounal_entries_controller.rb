@@ -19,6 +19,24 @@ class JounalEntriesController < ApplicationController
   def show
   end
   
+  # GET /payments/new
+  def payment_new
+    @jounal_entry = JounalEntry.new
+
+    if current_user
+      @pay_classifications = PayClassification.where(user_id: current_user.id)
+      @wallets = Wallet.where(user_id: current_user.id)
+    else
+      @pay_classifications = PayClassification.where(user_id: nil)
+      @wallets = Wallet.where(user_id: nil)
+    end
+    # = PayType.all
+    #pay_ymdに初期値（今日の日付）をセット
+    @jounal_entry.ymd = Time.now.strftime("%Y-%m-%d")
+    @jounal_entry.pay_amount = 0
+    
+  end
+
   # GET /JounalEntries/new
   def new
     @jounal_entry = JounalEntry.new
@@ -37,11 +55,16 @@ class JounalEntriesController < ApplicationController
   end
 
 
+
+
+
   # GET /JounalEntries/1/edit
   def edit
 
     @jounal_entry = JounalEntry.find(params[:id])
-    @pay_classifications = PayClassification.all
+    @pay_classifications = PayClassification.where(user_id: current_user.id)
+    @wallets = Wallet.where(user_id: current_user.id)
+    
   end
   
   # POST /JounalEntries
@@ -122,6 +145,7 @@ class JounalEntriesController < ApplicationController
       params.require(:jounal_entry).permit( :ymd,
                                             :pay_amount,
                                             :pay_classification_id,
+                                            :income_amount,
                                             :income_classification_id,
                                             :wallet_id,
                                             :remarks

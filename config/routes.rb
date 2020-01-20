@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   # DELETE /jounal_entries/:id(.:format)	=> jounal_entries#destroy
   # GET / => jounal_entries#index
   
+  resources :payments
+  resources :incomes
+
   get '/appsettings' => 'appsettings#index'
   
   get '/appsettings/pay_type_index' => 'appsettings#pay_type_index'

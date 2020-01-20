@@ -1,5 +1,5 @@
-class PaymentsController < ApplicationController
-  protect_from_forgery 
+class IncomesController < ApplicationController
+  protect_from_forgery
   #before_action :set_user, only: [:show, :edit, :update, :destroy]  
   
   # GET /JounalEntries
@@ -10,8 +10,8 @@ class PaymentsController < ApplicationController
     else
       user_id = nil
     end
-#    @JounalEntries = JounalEntry.all.order(created_at: :desc)
-    @JounalEntries = JounalEntry.where(user_id: user_id).order(created_at: :desc)
+    #@jounal_entries = JounalEntry.all.order(created_at: :desc)
+    @jounal_entries = JounalEntry.where(user_id: user_id).order(created_at: :desc)
   end
   
   # GET /JounalEntries/1
@@ -19,30 +19,24 @@ class PaymentsController < ApplicationController
   def show
   end
   
-  # GET /Payments/new
+  # GET /incomes/new
   def new
     @jounal_entry = JounalEntry.new
 
-    if current_user
-      @pay_classifications = PayClassification.where(user_id: current_user.id)
-      @wallets = Wallet.where(user_id: current_user.id)
-    else
-      @pay_classifications = PayClassification.where(user_id: nil)
-      @wallets = Wallet.where(user_id: nil)
-    end
-    # = PayType.all
-    #pay_ymdに初期値（今日の日付）をセット
+    @income_classifications = IncomeClassification.where(user_id: current_user.id)
+    @wallets = Wallet.where(user_id: current_user.id)
+
+    #ymdに初期値（今日の日付）をセット
     @jounal_entry.ymd = Time.now.strftime("%Y-%m-%d")
-    @jounal_entry.pay_amount = 0
-    
+    @jounal_entry.income_amount = 0
   end
-  
-  
-  # GET /JounalEntries/1/edit
+
+
+  # GET /incomes/1/edit
   def edit
 
     @jounal_entry = JounalEntry.find(params[:id])
-    @pay_classifications = PayClassification.where(user_id: current_user.id)
+    @income_classifications = PayClassification.where(user_id: current_user.id)
     @wallets = Wallet.where(user_id: current_user.id)
     
   end
@@ -51,14 +45,16 @@ class PaymentsController < ApplicationController
   # POST /JounalEntries.json
   def create
 
-    @JounalEntry = JounalEntry.new(JounalEntry_params)
-    @JounalEntry.user_id = current_user.id if current_user
+    @jounal_entry = JounalEntry.new(jounal_entry_params)
+    @jounal_entry.user_id = current_user.id if current_user
     
-    if @JounalEntry.save
+    if @jounal_entry.save
       redirect_to "/", notice: "登録しました。"
     else
-      @paytypes = PayType.all
-      render :new
+      @income_classifications = IncomeClassification.where(user_id: current_user.id)
+      @wallets = Wallet.where(user_id: current_user.id)
+
+      render "/new"
     end
     
   end
@@ -98,8 +94,8 @@ class PaymentsController < ApplicationController
   end
   
   def destroy
-    @JounalEntries = JounalEntry.find_by(id: params[:id])
-    if @JounalEntries.destroy 
+    @jounal_entries = JounalEntry.find_by(id: params[:id])
+    if @jounal_entries.destroy 
       flash[:notice] = "削除に成功しました"
     else
       flash[:notice] = "削除に失敗しました"
@@ -119,17 +115,17 @@ class PaymentsController < ApplicationController
 #  
 
   private
-  def jounal_entry_params
-    #params.require(:jounalEntry).permit(:ymd, :pay_classification_name, :pay_amount, :remarks)
-    params.require(:jounal_entry).permit( :ymd,
-                                          :pay_amount,
-                                          :pay_classification_id,
-                                          :income_amount,
-                                          :income_classification_id,
-                                          :wallet_id,
-                                          :remarks
-                                          )
-  end
+    def jounal_entry_params
+      #params.require(:jounalEntry).permit(:ymd, :pay_classification_name, :pay_amount, :remarks)
+      params.require(:jounal_entry).permit( :ymd,
+                                            :pay_amount,
+                                            :pay_classification_id,
+                                            :income_amount,
+                                            :income_classification_id,
+                                            :wallet_id,
+                                            :remarks
+                                            )
+    end
 #    # Use callbacks to share common setup or constraints between actions.
 #    def set_user
 #      @user = User.find(params[:id])

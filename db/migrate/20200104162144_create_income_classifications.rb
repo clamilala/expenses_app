@@ -9,7 +9,7 @@ class CreateIncomeClassifications < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    IncomeClassification.create(name: "-", user_id: 1)
+    IncomeClassification.create(name: "-", user_id: 0)
   end
 
   def down

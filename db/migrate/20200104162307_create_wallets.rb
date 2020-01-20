@@ -8,7 +8,7 @@ class CreateWallets < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    Wallet.create(name: "いつものお財布", user_id: 1)
+    Wallet.create(name: "いつものお財布", user_id: 0)
   end
 
   def down
