@@ -9,7 +9,15 @@ class CreateIncomeClassifications < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    IncomeClassification.create(name: "-", user_id: 0)
+    val = [ [0, "未分類", 1, true, "0"],
+            [1, "給与", 1, true, "0"],
+            [2, "その他の収入", 1, true, "0"],
+          ]
+
+    val.each do |id, name, seq, sgn, user_id|
+      IncomeClassification.create(id: id, name: name, order_seq: seq, default_sgn: sgn, user_id: user_id)
+    end
+    
   end
 
   def down
