@@ -10,8 +10,8 @@ class CreateIncomeClassifications < ActiveRecord::Migration[5.1]
     end
 
     val = [ [0, "未分類", 1, true, "0"],
-            [1, "給与", 1, true, "0"],
-            [2, "その他の収入", 1, true, "0"],
+            [1, "給与", 2, true, "0"],
+            [2, "その他の収入", 3, true, "0"],
           ]
 
     val.each do |id, name, seq, sgn, user_id|

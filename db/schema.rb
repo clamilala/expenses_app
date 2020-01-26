@@ -10,7 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191114165108) do
+ActiveRecord::Schema.define(version: 20200104162539) do
+
+  create_table "budgets", force: :cascade do |t|
+    t.date "ym"
+    t.integer "pay_classification_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pay_classification_id"], name: "index_budgets_on_pay_classification_id"
+    t.index ["user_id"], name: "index_budgets_on_user_id"
+  end
+
+  create_table "income_classifications", force: :cascade do |t|
+    t.string "name"
+    t.integer "order_seq"
+    t.boolean "default_sgn"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_income_classifications_on_user_id"
+  end
+
+  create_table "jounal_entries", force: :cascade do |t|
+    t.date "ymd"
+    t.integer "pay_amount"
+    t.integer "pay_classification_id"
+    t.integer "income_amount"
+    t.integer "income_classification_id"
+    t.integer "wallet_id"
+    t.text "remarks"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["income_classification_id"], name: "index_jounal_entries_on_income_classification_id"
+    t.index ["pay_classification_id"], name: "index_jounal_entries_on_pay_classification_id"
+    t.index ["user_id"], name: "index_jounal_entries_on_user_id"
+    t.index ["wallet_id"], name: "index_jounal_entries_on_wallet_id"
+  end
+
+  create_table "pay_classifications", force: :cascade do |t|
+    t.string "name"
+    t.integer "order_seq"
+    t.boolean "default_sgn"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pay_classifications_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -19,6 +66,15 @@ ActiveRecord::Schema.define(version: 20191114165108) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["login_id"], name: "index_users_on_login_id", unique: true
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.string "name"
+    t.integer "balance"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
 end

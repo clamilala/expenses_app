@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   
   resources :payments
   resources :incomes
+  resources :spreadsheets
 
   get '/appsettings' => 'appsettings#index'
   
