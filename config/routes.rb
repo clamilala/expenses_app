@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+
   get '/users/new' => 'users#new'
   post '/users/' => 'users#create'
   get '/users/edit' => 'users#edit'
@@ -10,20 +12,25 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   
+  resources :jounal_entries
+ get '/' => 'jounal_entries#index'
+  
+  #resources :jounal_entries で以下のルートが生成されている
+  # GET  /jounal_entries(.:format)	=> jounal_entries#index
+  # POST /jounal_entries(.:format)	=> jounal_entries#create
+  #	GET  /jounal_entries/new(.:format)	=> jounal_entries#new
+  #	GET  /jounal_entries/:id/edit(.:format) => jounal_entries#edit
+  #	GET  /jounal_entries/:id(.:format)	=> jounal_entries#show
+  # PATCH /jounal_entries/:id(.:format) => jounal_entries#update
+  # PUT  /jounal_entries/:id(.:format)	=> jounal_entries#update
+  # DELETE /jounal_entries/:id(.:format)	=> jounal_entries#destroy
+  # GET / => jounal_entries#index
+  
   resources :payments
-  get '/' => 'payments#index'
-  
-  #resources :payments で以下のルートが生成されている
-  # GET  /payments(.:format)	=> payments#index
-  # POST /payments(.:format)	=> payments#create
-  #	GET  /payments/new(.:format)	=> payments#new
-  #	GET  /payments/:id/edit(.:format) => payments#edit
-  #	GET  /payments/:id(.:format)	=> payments#show
-  # PATCH /payments/:id(.:format) => payments#update
-  # PUT  /payments/:id(.:format)	=> payments#update
-  # DELETE /payments/:id(.:format)	=> payments#destroy
-  # GET / => payments#index
-  
+  resources :incomes
+  resources :spreadsheets
+  resources :budgets
+
   get '/appsettings' => 'appsettings#index'
   
   get '/appsettings/pay_type_index' => 'appsettings#pay_type_index'

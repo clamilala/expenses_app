@@ -16,8 +16,13 @@ class UsersController < ApplicationController
     if @user.save
       
       #支払分類のデフォルト値を作成
-      PayType.create_default_value(@user.id)
+      Pay_classification.create_default_value(@user.id)
+
+      #todo:収入分類のデフォルト値を作成
       
+      #財布／口座のデフォルト値を作成
+      Wallet.create_default_value(@user.id)
+
       redirect_to("/", notice: "ユーザー「#{@user.name}」を登録しました。")
     else
       render(:new)

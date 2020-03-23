@@ -1,67 +1,395 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    
-    <%= javascript_include_tag 'application' %>
-    <%= stylesheet_link_tag    'application' %>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
-    <!-- Open Iconic — www.useiconic.com/open -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  
+  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag    'application' %>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+  <!-- Open Iconic — www.useiconic.com/open -->
 
-    
-    
-    <title>Web家計簿</title>
+  
+  <title>Web家計簿</title>
 
-    <!-- 以下は rails new で自動生成されたコード。エラーを吐くため、一旦コメントアウト -->
-    <!-- < %= csrf_meta_tags %> -->
-    <!-- < %= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %> -->
-    <!-- < %= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
-  </head>
-  <body>
-    <header>
-        <nav class="navbar fixed-top navbar-dark bg-dark">
-            <%= link_to "一覧", payments_path, class:"btn btn-info", role: "button col-10" %>
-            <%= link_to "登録", new_payment_path, class:"btn btn-info", role: "button" %>
-            <% if current_user %>
-              <%= link_to "設定", appsettings_path, class:"btn btn-info", role: "button" %>
-            <% else %>
-              <%= link_to "ログイン", "/login", class:"btn btn-info", role: "button" %>
-            <% end %>
-        </nav>
-    </header>
-    <div class="container">
-        <br>
-        <br>
-        <br>
-    </div>
-<!--    < % if flash[:notice] %>
-      <div class="flash">
-        < %= flash[:notice] %>
+  <!-- 以下は rails new で自動生成されたコード。エラーを吐くため、一旦コメントアウト -->
+  <!-- < %= csrf_meta_tags %> -->
+  <!-- < %= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %> -->
+  <!-- < %= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
+
+  
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <!--<link href="../assets/stylesheets/bootstrap.min.css" rel="stylesheet" /> -->
+  <!--<link href="../assets/stylesheets/stylesheet.scss" rel="stylesheet" /> -->
+  <!--<link href="../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" /> -->
+  <!-- "CSS Just for demo purpose, don't include it in your project" -->
+  <!-- <link href="../assets/demo/demo.css" rel="stylesheet" /> -->
+</head>
+
+<body class="">
+  <div class="wrapper ">
+
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="<%= "active" if @active_page == "支出の入力" %>">
+            <!-- <i class="nc-icon nc-bank"></i> -->
+            <%= link_to "支出の入力", '/payments/new' %>
+          </li>
+          <li class="<%= "active" if @active_page == "収入の入力" %>">
+            <!-- <i class="nc-icon nc-diamond"></i> -->
+            <%= link_to "収入の入力", '/incomes/new' %>
+          </li>
+          <li class="<%= "active" if @active_page == "入力の一覧" %>">
+            <!-- <i class="nc-icon nc-pin-3"></i> -->
+            <%= link_to "入力の一覧", jounal_entries_path %>
+          </li>
+          <li class="<%= "active" if @active_page == "集計表" %>">
+            <!-- <i class="nc-icon nc-bell-55"></i> -->
+            <%= link_to "集計表", '/spreadsheets/' %>
+          </li>
+          <li>
+            <a href="./user.html">
+              <!-- <i class="nc-icon nc-single-02"></i> -->
+              <p>お金の移動</p>
+            </a>
+          </li>
+          <li>
+            <a href="./tables.html">
+              <!-- <i class="nc-icon nc-tile-56"></i> -->
+              <p>残高の調整</p>
+            </a>
+          </li>
+          <li>
+            <a href="./typography.html">
+              <!-- <i class="nc-icon nc-caps-small"></i> -->
+              <p>毎月払いの入力</p>
+            </a>
+          </li>
+          <li>
+          <li class="<%= "active" if @active_page == "予算を立てる" %>">
+            <!-- <i class="nc-icon nc-caps-small"></i> -->
+            <%= link_to "予算を立てる", '/budgets/' %>
+          </li>
+          <li>
+            <!-- <i class="nc-icon nc-caps-small"></i> -->
+            <%= link_to "設定", "/appsettings" %>
+          </li>
+
+        </ul>
       </div>
-    < % end %>
--->
-    <div class="container">
-      <%= yield %>
     </div>
 
-    <footer>
-    </footer>
-      
-    <% if flash.any? %>
-      <script type="text/javascript">
-        <% flash.each do |key, value| %>
-          <% key = "success" if key == "notice" %>
-          <% key = "error" if key == "alert" %>
-          toastr['<%= key %>']('<%= value %>');
-        <% end %>
-      </script>
-    <% end %>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="#pablo">かけいぼ</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <form>
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="nc-icon nc-zoom-split"></i>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link btn-magnify" href="#pablo">
+                  <i class="nc-icon nc-layout-11"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Stats</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item btn-rotate dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="nc-icon nc-bell-55"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn-rotate" href="#pablo">
+                  <i class="nc-icon nc-settings-gear-65"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Account</span>
+                  </p>
+                </a>
+              </li>
+              <%= link_to "一覧", jounal_entries_path, class:"btn btn-info", role: "button col-10" %>
+              <%= link_to "登録", new_jounal_entry_path, class:"btn btn-info", role: "button" %>
+              <% if current_user %>
+                <%= link_to "設定", appsettings_path, class:"btn btn-info", role: "button" %>
+              <% else %>
+                <%= link_to "ログイン", "/login", class:"btn btn-info", role: "button" %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <!-- <div class="panel-header panel-header-lg">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-      
-  </body>
+  <canvas id="bigDashboardChart"></canvas>
+
+
+</div> -->
+      <div class="content">
+        <div class="row">
+          <%= yield %>
+        </div>
+<!--
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-globe text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Capacity</p>
+                      <p class="card-title">150GB
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i> Update Now
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-money-coins text-success"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Revenue</p>
+                      <p class="card-title">$ 1,345
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-calendar-o"></i> Last day
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-vector text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Errors</p>
+                      <p class="card-title">23
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-clock-o"></i> In the last hour
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-favourite-28 text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Followers</p>
+                      <p class="card-title">+45K
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i> Update now
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Users Behavior</h5>
+                <p class="card-category">24 Hours performance</p>
+              </div>
+              <div class="card-body ">
+                <canvas id=chartHours width="400" height="100"></canvas>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-history"></i> Updated 3 minutes ago
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Email Statistics</h5>
+                <p class="card-category">Last Campaign Performance</p>
+              </div>
+              <div class="card-body ">
+                <canvas id="chartEmail"></canvas>
+              </div>
+              <div class="card-footer ">
+                <div class="legend">
+                  <i class="fa fa-circle text-primary"></i> Opened
+                  <i class="fa fa-circle text-warning"></i> Read
+                  <i class="fa fa-circle text-danger"></i> Deleted
+                  <i class="fa fa-circle text-gray"></i> Unopened
+                </div>
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-calendar"></i> Number of emails sent
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-title">NASDAQ: AAPL</h5>
+                <p class="card-category">Line Chart with Points</p>
+              </div>
+              <div class="card-body">
+                <canvas id="speedChart" width="400" height="100"></canvas>
+              </div>
+              <div class="card-footer">
+                <div class="chart-legend">
+                  <i class="fa fa-circle text-info"></i> Tesla Model S
+                  <i class="fa fa-circle text-warning"></i> BMW 5 Series
+                </div>
+                <hr/>
+                <div class="card-stats">
+                  <i class="fa fa-check"></i> Data information certified
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+-->
+      </div>
+
+      <footer class="footer footer-black  footer-white ">
+<!--
+        <div class="container-fluid">
+          <div class="row">
+            <nav class="footer-nav">
+              <ul>
+                <li>
+                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+                </li>
+                <li>
+                  <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+                </li>
+                <li>
+                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+              </span>
+            </div>
+-->
+          </div>
+        </div>
+      </footer>
+    </div>
+
+  </div>
+  <% if flash.any? %>
+    <script type="text/javascript">
+      <% flash.each do |key, value| %>
+        <% key = "success" if key == "notice" %>
+        <% key = "error" if key == "alert" %>
+        toastr['<%= key %>']('<%= value %>');
+      <% end %>
+    </script>
+  <% end %>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </div>
+</body>
 </html>

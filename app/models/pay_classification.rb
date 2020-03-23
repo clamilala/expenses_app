@@ -1,5 +1,8 @@
-class AddDefaultValueForPayTypes < ActiveRecord::Migration[5.1]
-  def up
+class PayClassification < ApplicationRecord
+  belongs_to :user
+
+  #クラスメソッド
+  def self.create_default_value(user_id)
     val = [["未分類", true],
           ["食費", false],
           ["日用品", false],
@@ -17,11 +20,7 @@ class AddDefaultValueForPayTypes < ActiveRecord::Migration[5.1]
           ["旅行", false]
           ]
     val.each do |name, sgn|
-      PayType.create(pay_type_name: name, default_sgn: sgn)
+      PayClassification.create(name: name, default_sgn: sgn, user_id: user_id)
     end
-  end
-  
-  def down
-    execute 'Delete From pay_types;'
   end
 end

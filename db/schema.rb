@@ -10,26 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191129235632) do
+ActiveRecord::Schema.define(version: 20200104162539) do
 
-  create_table "pay_types", force: :cascade do |t|
-    t.string "pay_type_name", null: false
-    t.boolean "default_sgn", null: false
+  create_table "budgets", force: :cascade do |t|
+    t.date "ym"
+    t.integer "pay_classification_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_pay_types_on_user_id"
+    t.index ["pay_classification_id"], name: "index_budgets_on_pay_classification_id"
+    t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
-  create_table "payments", force: :cascade do |t|
-    t.date "pay_ymd", null: false
-    t.string "pay_type_name", null: false
-    t.integer "amount", null: false
-    t.text "remarks"
+  create_table "income_classifications", force: :cascade do |t|
+    t.string "name"
+    t.integer "order_seq"
+    t.boolean "default_sgn"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_income_classifications_on_user_id"
+  end
+
+  create_table "jounal_entries", force: :cascade do |t|
+    t.date "ymd"
+    t.integer "pay_amount"
+    t.integer "pay_classification_id"
+    t.integer "income_amount"
+    t.integer "income_classification_id"
+    t.integer "wallet_id"
+    t.text "remarks"
     t.integer "user_id"
-    t.index ["user_id"], name: "index_payments_on_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["income_classification_id"], name: "index_jounal_entries_on_income_classification_id"
+    t.index ["pay_classification_id"], name: "index_jounal_entries_on_pay_classification_id"
+    t.index ["user_id"], name: "index_jounal_entries_on_user_id"
+    t.index ["wallet_id"], name: "index_jounal_entries_on_wallet_id"
+  end
+
+  create_table "pay_classifications", force: :cascade do |t|
+    t.string "name"
+    t.integer "order_seq"
+    t.boolean "default_sgn"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pay_classifications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,6 +66,15 @@ ActiveRecord::Schema.define(version: 20191129235632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["login_id"], name: "index_users_on_login_id", unique: true
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.string "name"
+    t.integer "balance"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
 end

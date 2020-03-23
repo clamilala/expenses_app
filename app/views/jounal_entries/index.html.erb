@@ -1,0 +1,30 @@
+<!-- application.html.erb にHTMLタグ等が記述されているため、このファイルには記載不要 -->
+<!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-light text-center">
+            <tr><th>日付</th><th>支出の分類</th><th>支出の金額</th><th>収入の分類</th><th>収入の金額</th><th>内容</th><th>編集</th><th>削除</th></tr>
+        </thead>
+        <tbody>
+            <% @jounal_entries.each do |jounal_entry| %>
+            <tr>
+                <td><%= jounal_entry.ymd %></td>
+                <td><%= jounal_entry.pay_classification.name %></td>
+                <td class="text-right"><%= jounal_entry.pay_amount.to_s(:delimited) %></td>
+
+                <td><%= jounal_entry.income_classification.name %></td>
+                <td class="text-right"><%= jounal_entry.income_amount.to_s(:delimited) %></td>
+
+                <td><%= jounal_entry.remarks %></td>
+                <% if jounal_entry.income_amount == 0 %>
+                    <td><%= link_to("編集", edit_payment_path(jounal_entry.id)) %></td>
+                <% else %>
+                    <td><%= link_to("編集", edit_income_path(jounal_entry.id)) %></td>
+                <% end %>
+                <td><%= link_to("削除", "/jounal_entries/#{jounal_entry.id}", :method => :delete) %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
