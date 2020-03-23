@@ -2,10 +2,15 @@
 <!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
 
 <div class="container">
+  <div class="row">
     <table class="table table-bordered">
         <thead class="thead-light text-center">
             <tr>
-                <th>-</th><th>分類</th><th>予算</th><th>集計金額</th><th>差額</th>
+                <th class="width:10%">-</th>
+                <th class="width:30%">分類</th>
+                <th class="width:20%">予算</th>
+                <th class="width:20%">集計金額</th>
+                <th class="width:20%">差額</th>
             </tr>
         </thead>
         <tbody>
@@ -16,16 +21,16 @@
                 <tr>
               <% end %>
                 <td><%= income_classification.name %></td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td class="text-right">0</td>
+                <td class="text-right"><%= @income_aggregate[income_classification.id].to_i.to_s(:delimited) %></td>
+                <td class="text-right">0</td>
               </tr>
             <% end %>
             <tr>
                 <td>小計</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td class="text-right">0</td>
+                <td class="text-right">0</td>
+                <td class="text-right">0</td>
             </tr>
 
             <% @pay_classifications.each do |pay_classification| %>
@@ -35,17 +40,18 @@
                 <tr>
               <% end %>
                 <td><%= pay_classification.name %></td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td class="text-right">0</td>
+                <td class="text-right"><%= @pay_aggregate[pay_classification.id].to_i.to_s(:delimited) %></td>
+                <td class="text-right">0</td>
               </tr>
             <% end %>
             <tr>
                 <td>小計</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td class="text-right">0</td>
+                <td class="text-right">0</td>
+                <td class="text-right">0</td>
             </tr>
         </tbody>
     </table>
+  </div>
 </div>

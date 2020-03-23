@@ -39,19 +39,19 @@
     -->
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
+          <li class="<%= "active" if @active_page == "支出の入力" %>">
             <!-- <i class="nc-icon nc-bank"></i> -->
             <%= link_to "支出の入力", '/payments/new' %>
           </li>
-          <li class="active">
+          <li class="<%= "active" if @active_page == "収入の入力" %>">
             <!-- <i class="nc-icon nc-diamond"></i> -->
             <%= link_to "収入の入力", '/incomes/new' %>
           </li>
-          <li>
+          <li class="<%= "active" if @active_page == "入力の一覧" %>">
             <!-- <i class="nc-icon nc-pin-3"></i> -->
             <%= link_to "入力の一覧", jounal_entries_path %>
           </li>
-          <li>
+          <li class="<%= "active" if @active_page == "集計表" %>">
             <!-- <i class="nc-icon nc-bell-55"></i> -->
             <%= link_to "集計表", '/spreadsheets/' %>
           </li>
@@ -74,10 +74,9 @@
             </a>
           </li>
           <li>
-            <a href="./typography.html">
-              <!-- <i class="nc-icon nc-caps-small"></i> -->
-              <p>予算を立てる</p>
-            </a>
+          <li class="<%= "active" if @active_page == "予算を立てる" %>">
+            <!-- <i class="nc-icon nc-caps-small"></i> -->
+            <%= link_to "予算を立てる", '/budgets/' %>
           </li>
           <li>
             <!-- <i class="nc-icon nc-caps-small"></i> -->
@@ -346,6 +345,7 @@
       </div>
 
       <footer class="footer footer-black  footer-white ">
+<!--
         <div class="container-fluid">
           <div class="row">
             <nav class="footer-nav">
@@ -361,7 +361,6 @@
                 </li>
               </ul>
             </nav>
-<!--
             <div class="credits ml-auto">
               <span class="copyright">
                 ©

@@ -1,0 +1,47 @@
+<!-- application.html.erb にHTMLタグ等が記述されているため、このファイルには記載不要 -->
+<!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
+
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered">
+      <thead class="thead-light text-center">
+          <tr>
+              <th class="width:10%">-</th>
+              <th class="width:30%">分類</th>
+              <th class="width:20%">当月予算</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @income_classifications.each do |income_classification| %>
+            <% if income_classification.order_seq == 1 %>
+              <tr><td rowspan=<%= @income_classifications.size + 1 %>>収入</td>
+            <% else %>
+              <tr>
+            <% end %>
+              <td><%= income_classification.name %></td>
+              <td class="text-right">0</td>
+            </tr>
+          <% end %>
+          <tr>
+              <td>収入合計</td>
+              <td class="text-right">0</td>
+          </tr>
+
+          <% @pay_classifications.each do |pay_classification| %>
+              <% if pay_classification.order_seq == 1 %>
+              <tr><td rowspan=<%= @pay_classifications.size + 1 %>>支出</td>
+            <% else %>
+              <tr>
+            <% end %>
+              <td><%= pay_classification.name %></td>
+              <td class="text-right">0</td>
+            </tr>
+          <% end %>
+          <tr>
+              <td>支出合計</td>
+              <td class="text-right">0</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

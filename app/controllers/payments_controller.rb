@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
   protect_from_forgery 
-  #before_action :set_user, only: [:show, :edit, :update, :destroy]  
-  
+  before_action :set_active_page, only: [:new, :edit]
+
   # GET /JounalEntries
   # GET /JounalEntries.json
   def index
@@ -130,15 +130,9 @@ class PaymentsController < ApplicationController
                                           :remarks
                                           )
   end
-#    # Use callbacks to share common setup or constraints between actions.
-#    def set_user
-#      @user = User.find(params[:id])
-#    end
-#
-#    # Never trust parameters from the scary internet, only allow the white list through.
-#    def user_params
-#      params.require(:user).permit(:name, :address, :age)
-#    end
 
+  def set_active_page
+    @active_page = "支出の入力"
+  end
 
 end

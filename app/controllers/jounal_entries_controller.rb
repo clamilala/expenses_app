@@ -1,6 +1,7 @@
 class JounalEntriesController < ApplicationController
   protect_from_forgery
   #before_action :set_user, only: [:show, :edit, :update, :destroy]  
+  before_action :set_active_page, only: [:index]
   
   # GET /JounalEntries
   # GET /JounalEntries.json
@@ -12,6 +13,8 @@ class JounalEntriesController < ApplicationController
     end
     #@jounal_entries = JounalEntry.all.order(created_at: :desc)
     @jounal_entries = JounalEntry.where(user_id: user_id).order(created_at: :desc)
+
+    
   end
   
   # GET /JounalEntries/1
@@ -151,6 +154,11 @@ class JounalEntriesController < ApplicationController
                                             :remarks
                                             )
     end
+
+    def set_active_page
+      @active_page = "入力の一覧"
+    end
+    
 #    # Use callbacks to share common setup or constraints between actions.
 #    def set_user
 #      @user = User.find(params[:id])
