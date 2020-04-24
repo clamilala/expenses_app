@@ -24,7 +24,7 @@ class PaymentsController < ApplicationController
     @jounal_entry = JounalEntry.new
 
     if current_user
-      @pay_classifications = PayClassification.where(user_id: current_user.id)
+      @pay_classifications = PayClassification.where(user_id: current_user.id, list_sgn: true)
       @wallets = Wallet.where(user_id: current_user.id)
     else
       @pay_classifications = PayClassification.where(user_id: nil)

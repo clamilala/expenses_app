@@ -3,10 +3,10 @@ class BudgetsController < ApplicationController
   def index
     
     # ユーザーに紐づく収入分類を取得
-    @income_classifications = IncomeClassification.where(user_id: current_user.id).order(order_seq: :asc)
+    @income_classifications = IncomeClassification.where(user_id: current_user.id, list_sgn: true).order(order_seq: :asc)
 
     # ユーザーに紐づく支出分類を取得
-    @pay_classifications = PayClassification.where(user_id: current_user.id).order(order_seq: :asc)
+    @pay_classifications = PayClassification.where(user_id: current_user.id, list_sgn: true).order(order_seq: :asc)
 
     @active_page = "予算を立てる"
   end

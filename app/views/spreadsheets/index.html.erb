@@ -14,42 +14,60 @@
             </tr>
         </thead>
         <tbody>
+            <% income_budget_sum = 0 %>
+            <% income_aggregate_sum = 0 %>
+            <% income_difference_sum = 0 %>
             <% @income_classifications.each do |income_classification| %>
               <% if income_classification.order_seq == 1 %>
                 <tr><td rowspan=<%= @income_classifications.size + 1 %>>収入</td>
               <% else %>
                 <tr>
               <% end %>
+                <% income_budget_amt = 0 #予算 %>
+                <% income_aggregate_amt = @income_aggregate[income_classification.id].to_i #集計金額 %>
+                <% income_difference_amt = income_budget_amt - income_aggregate_amt #差額 %>
+                <% income_budget_sum += income_budget_amt  #予算の小計 %>
+                <% income_aggregate_sum += income_aggregate_amt #集計金額の小計 %>
+                <% income_difference_sum += income_difference_amt #差額の小計 %>
                 <td><%= income_classification.name %></td>
-                <td class="text-right">0</td>
-                <td class="text-right"><%= @income_aggregate[income_classification.id].to_i.to_s(:delimited) %></td>
-                <td class="text-right">0</td>
+                <td class="text-right"><%= income_budget_amt.to_s(:delimited) %></td>
+                <td class="text-right"><%= income_aggregate_amt.to_s(:delimited) %></td>
+                <td class="text-right"><%= income_difference_amt.to_s(:delimited) %></td>
               </tr>
             <% end %>
             <tr>
                 <td>小計</td>
-                <td class="text-right">0</td>
-                <td class="text-right">0</td>
-                <td class="text-right">0</td>
+                <td class="text-right"><%= income_budget_sum.to_s(:delimited) %></td>
+                <td class="text-right"><%= income_aggregate_sum.to_s(:delimited) %></td>
+                <td class="text-right"><%= income_difference_sum.to_s(:delimited) %></td>
             </tr>
 
+            <% pay_budget_sum = 0 %>
+            <% pay_aggregate_sum = 0 %>
+            <% pay_difference_sum = 0 %>
             <% @pay_classifications.each do |pay_classification| %>
-                <% if pay_classification.order_seq == 1 %>
+              <% if pay_classification.order_seq == 1 %>
                 <tr><td rowspan=<%= @pay_classifications.size + 1 %>>支出</td>
               <% else %>
                 <tr>
               <% end %>
+                <% pay_budget_amt = 0 #予算 %>
+                <% pay_aggregate_amt = @pay_aggregate[pay_classification.id].to_i #集計金額 %>
+                <% pay_difference_amt = pay_budget_amt - pay_aggregate_amt #差額 %>
+                <% pay_budget_sum += pay_budget_amt  #予算の小計 %>
+                <% pay_aggregate_sum += pay_aggregate_amt #集計金額の小計 %>
+                <% pay_difference_sum += pay_difference_amt #差額の小計 %>
                 <td><%= pay_classification.name %></td>
-                <td class="text-right">0</td>
-                <td class="text-right"><%= @pay_aggregate[pay_classification.id].to_i.to_s(:delimited) %></td>
-                <td class="text-right">0</td>
+                <td class="text-right"><%= pay_budget_amt.to_s(:delimited) %></td>
+                <td class="text-right"><%= pay_aggregate_amt.to_s(:delimited) %></td>
+                <td class="text-right"><%= pay_difference_amt.to_s(:delimited) %></td>
               </tr>
             <% end %>
             <tr>
                 <td>小計</td>
-                <td class="text-right">0</td>
-                <td class="text-right">0</td>
-                <td class="text-right">0</td>
+                <td class="text-right"><%= pay_budget_sum.to_s(:delimited) %></td>
+                <td class="text-right"><%= pay_aggregate_sum.to_s(:delimited) %></td>
+                <td class="text-right"><%= pay_difference_sum.to_s(:delimited) %></td>
             </tr>
         </tbody>
     </table>

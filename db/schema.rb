@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20200104162539) do
     t.string "name"
     t.integer "order_seq"
     t.boolean "default_sgn"
+    t.boolean "list_sgn"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20200104162539) do
     t.string "name"
     t.integer "order_seq"
     t.boolean "default_sgn"
+    t.boolean "list_sgn"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
