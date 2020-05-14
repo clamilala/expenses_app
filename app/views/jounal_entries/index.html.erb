@@ -4,15 +4,30 @@
 <div class="container">
     <table class="table table-bordered">
         <thead class="thead-light text-center">
-            <tr><th>日付</th><th>支出の分類</th><th>支出の金額</th><th>収入の分類</th><th>収入の金額</th><th>内容</th><th>編集</th><th>削除</th></tr>
+            <tr>
+                <th>日付</th>
+                <!-- <th>ID</th> -->
+                <th>支出の分類</th>
+                <th>支出の金額</th>
+                <!-- <th>ID</th> -->
+                <th>収入の分類</th>
+                <th>収入の金額</th>
+                <th>内容</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
         </thead>
         <tbody>
             <% @jounal_entries.each do |jounal_entry| %>
             <tr>
                 <td><%= jounal_entry.ymd %></td>
+                <!-- 支出分類 -->
+                <!-- <td><%= jounal_entry.pay_classification.id %></td> -->
                 <td><%= jounal_entry.pay_classification.name %></td>
                 <td class="text-right"><%= jounal_entry.pay_amount.to_s(:delimited) %></td>
 
+                <!-- 収入分類 -->
+                <!-- <td><%= jounal_entry.income_classification.id %></td> -->
                 <td><%= jounal_entry.income_classification.name %></td>
                 <td class="text-right"><%= jounal_entry.income_amount.to_s(:delimited) %></td>
 

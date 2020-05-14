@@ -23,7 +23,7 @@ class IncomesController < ApplicationController
   def new
     @jounal_entry = JounalEntry.new
 
-    @income_classifications = IncomeClassification.where(user_id: current_user.id)
+    @income_classifications = IncomeClassification.where(user_id: current_user.id, list_sgn: true)
     @wallets = Wallet.where(user_id: current_user.id)
 
     #ymdに初期値（今日の日付）をセット

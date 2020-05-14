@@ -19,3 +19,42 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 //@ import "bootstrap";
 @import "toastr";
+
+div .t-head {
+  height: 50px;
+  border: 1px solid #DEE2E6;
+  background-color: #E9ECEF;
+  font-weight:bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t-head p {
+  margin: 0px;
+}
+
+div .t-body {
+  height: 50px;
+  border: 1px solid #DEE2E6;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+}
+.t-body p {
+  margin: 0px;
+}
+
+div .t-body-title {
+  border: 1px solid #DEE2E6;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+}
+
+div .t-frame {
+  //border: 1px solid #DEE2E6;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}

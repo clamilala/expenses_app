@@ -15,9 +15,13 @@ ActiveRecord::Schema.define(version: 20200104162539) do
   create_table "budgets", force: :cascade do |t|
     t.date "ym"
     t.integer "pay_classification_id"
+    t.integer "pay_amount"
+    t.integer "income_classification_id"
+    t.integer "income_amount"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["income_classification_id"], name: "index_budgets_on_income_classification_id"
     t.index ["pay_classification_id"], name: "index_budgets_on_pay_classification_id"
     t.index ["user_id"], name: "index_budgets_on_user_id"
   end
@@ -26,6 +30,7 @@ ActiveRecord::Schema.define(version: 20200104162539) do
     t.string "name"
     t.integer "order_seq"
     t.boolean "default_sgn"
+    t.boolean "list_sgn"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,6 +58,7 @@ ActiveRecord::Schema.define(version: 20200104162539) do
     t.string "name"
     t.integer "order_seq"
     t.boolean "default_sgn"
+    t.boolean "list_sgn"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
