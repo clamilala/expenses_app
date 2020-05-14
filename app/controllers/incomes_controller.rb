@@ -23,12 +23,18 @@ class IncomesController < ApplicationController
   def new
     @jounal_entry = JounalEntry.new
 
-    @income_classifications = IncomeClassification.where(user_id: current_user.id, list_sgn: true)
-    @wallets = Wallet.where(user_id: current_user.id)
+    if current_user
+      @income_classifications = IncomeClassification.where(user_id: current_user.id, list_sgn: true)
+      @wallets = Wallet.where(user_id: current_user.id)
+    else
+      @income_classifications = IncomeClassification.where(user_id: nil)
+      @wallets = Wallet.where(user_id: nil)
+    end
 
     #ymdに初期値（今日の日付）をセット
     @jounal_entry.ymd = Time.now.strftime("%Y-%m-%d")
     @jounal_entry.income_amount = 0
+    
   end
 
 
