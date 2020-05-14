@@ -1,0 +1,12 @@
+
+<div class="container align-self-center col-md-6">
+
+<% if @budget.errors.present? %>
+  <% @budget.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
+<div class="form-group ">
+    <%= render 'form' %>
+</div>
+</div>
