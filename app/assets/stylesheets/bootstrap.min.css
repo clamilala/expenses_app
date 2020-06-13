@@ -3171,55 +3171,55 @@ display:none
 display:block
 }
 .navbar{
-position:relative;
-display:-ms-flexbox;
-display:flex;
--ms-flex-wrap:wrap;
-flex-wrap:wrap;
--ms-flex-align:center;
-align-items:center;
--ms-flex-pack:justify;
-justify-content:space-between;
-padding:.5rem 1rem
+    position:relative;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    -ms-flex-align:center;
+    align-items:center;
+    -ms-flex-pack:justify;
+    justify-content:space-between;
+    padding:.5rem 1rem
 }
 .navbar>.container,.navbar>.container-fluid{
-display:-ms-flexbox;
-display:flex;
--ms-flex-wrap:wrap;
-flex-wrap:wrap;
--ms-flex-align:center;
-align-items:center;
--ms-flex-pack:justify;
-justify-content:space-between
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    -ms-flex-align:center;
+    align-items:center;
+    -ms-flex-pack:justify;
+    justify-content:space-between
 }
 .navbar-brand{
-display:inline-block;
-padding-top:.3125rem;
-padding-bottom:.3125rem;
-margin-right:1rem;
-font-size:1.25rem;
-line-height:inherit;
-white-space:nowrap
+    display:inline-block;
+    padding-top:.3125rem;
+    padding-bottom:.3125rem;
+    margin-right:1rem;
+    font-size:1.25rem;
+    line-height:inherit;
+    white-space:nowrap
 }
 .navbar-brand:focus,.navbar-brand:hover{
-text-decoration:none
+    text-decoration:none
 }
 .navbar-nav{
-display:-ms-flexbox;
-display:flex;
--ms-flex-direction:column;
-flex-direction:column;
-padding-left:0;
-margin-bottom:0;
-list-style:none
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    padding-left:0;
+    margin-bottom:0;
+    list-style:none
 }
 .navbar-nav .nav-link{
-padding-right:0;
-padding-left:0
+    padding-right:0;
+    padding-left:0
 }
 .navbar-nav .dropdown-menu{
-position:static;
-float:none
+    position:static;
+    float:none
 }
 .navbar-text{
 display:inline-block;
