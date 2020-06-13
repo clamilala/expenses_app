@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
-skip_before_action :verify_authenticity_token
+  #skip_before_action：親クラス等で定義済みのフィルタを通らないようにする
+  skip_before_action :verify_authenticity_token
+  skip_before_action :login_required
+
   def new
     
   end
