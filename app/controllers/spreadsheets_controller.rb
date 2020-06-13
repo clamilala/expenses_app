@@ -9,12 +9,12 @@ class SpreadsheetsController < ApplicationController
     @pay_classifications = PayClassification.where(user_id: current_user.id, list_sgn: true).order(order_seq: :asc)
 
     
-    # ハッシュ宣言
+    # ハッシュ宣言（aggregate：集計）
     @income_aggregate = {}
     # 収入の合計額を取得してハッシュに変換
     @income_aggregate = JounalEntry.group(:income_classification_id).sum(:income_amount).to_h
     
-    # ハッシュ宣言
+    # ハッシュ宣言（aggregate：集計）
     @pay_aggregate = {}
     # 支出の合計額を取得てハッシュに変換
     @pay_aggregate = JounalEntry.group(:pay_classification_id).sum(:pay_amount).to_h

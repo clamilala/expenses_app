@@ -25,8 +25,25 @@
       <% @income_classifications.each do |income_classification| %>
         <div class="t-frame col-12">
           <div class="t-body col-6"><%= income_classification.name %></div>
-          <div class="t-body col-5">0</div>
-          <div class="t-body col-1">更新</div>
+          <div class="t-body col-5">0,<%= @income_budget[income_classification.id].to_s %></div>
+
+          <% if @income_budget[income_classification.id] %>
+            <% #予算データがある場合 %>
+            <div class="t-body col-1"><%= link_to("編集", edit_income_path(@income_budget[income_classification.id].id)) %></div>
+          <% else %>
+            <% #予算データがない場合 %>
+            <div class="t-body col-1">
+              <%= form_with model: @budget, local: true do |form| %>
+                <input type="hidden" name="income_classification_id" value=<%= income_classification.id.to_s %>>
+                <input type="hidden" name="pay_classification_id" value=999>
+                <%= link_to "なし", '/budgets/new' %>
+              <% end %>
+            </div>
+          <% end %>
+        
+          <!--< %= link_to("編集", edit_payment_path(jounal_entry.id)) %> -->
+          <!--< %= link_to("編集", edit_income_path(jounal_entry.id)) %> -->
+
         </div>
       <% end %>
       <div class="t-frame col-12">
