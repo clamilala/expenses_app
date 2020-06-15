@@ -5035,9 +5035,9 @@ License - nucleoapp.com/license/
 }
 
 .main-panel>.content {
-  padding: 30px 30px 30px;
+/*  margin-top: 81px;*/
+  padding: 80px 30px 30px;
   min-height: calc(100vh - 123px);
-  margin-top: 81px;
   background-color: #FFFFFF;
 }
 
@@ -5769,8 +5769,9 @@ License - nucleoapp.com/license/
   line-height: 59px;
 }
 
-@media screen and (max-width: 991px) {
-  .navbar {
+/*@ media screen and (max-width: 991px) {*/
+@media screen and (max-width: 750px) {
+    .navbar {
     padding: 0;
   }
   .navbar.navbar-absolute {
@@ -6263,8 +6264,9 @@ License - nucleoapp.com/license/
   }
 }
 
-@media (max-width: 991px) and (min-width: 768px) {
-  .nav-tabs-navigation.verical-navs {
+/*@media (max-width: 991px) and (min-width: 768px) {*/
+@media (max-width: 750px) and (min-width: 768px) {
+    .nav-tabs-navigation.verical-navs {
     padding: 0px 2px;
   }
 }
@@ -6278,8 +6280,9 @@ License - nucleoapp.com/license/
   }
 }
 
-@media screen and (min-width: 992px) {
-  .navbar-collapse {
+/*@ media screen and (min-width: 992px) {*/
+@media screen and (min-width: 751px) {
+    .navbar-collapse {
     background: none !important;
   }
   .navbar .navbar-toggle {
@@ -6496,8 +6499,9 @@ License - nucleoapp.com/license/
   z-index: 1;
 }
 
-@media all and (min-width: 992px) {
-  .sidebar .nav>li.active-pro {
+/*@ media all and (min-width: 992px) {*/
+@media all and (min-width: 751px) {
+    .sidebar .nav>li.active-pro {
     position: absolute;
     width: 100%;
     bottom: 10px;

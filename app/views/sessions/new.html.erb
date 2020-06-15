@@ -1,22 +1,24 @@
 
 <div class="container align-self-center col-md-6">
-    ログイン画面
-    <div class="form-group"> 
+    <div class="login_title">
+      <div>ログイン</div>
+    </div>
+    <div class="form-group login_form"> 
       <%= form_with scope: :session , local: true do |form| %>
         <div class="form-group row">
             <label for="user_login_id" class="col-sm-4 col-form-label">ログインID</label>
-            <%= form.text_field :login_id, class: "form-control col-sm-8", id: "user_login_id" %>
+            <%= form.text_field :login_id, class: "form-control col-sm-7", id: "user_login_id" %>
         </div>
         <div class="form-group row">
             <label for="user_password" class="col-sm-4 col-form-label">パスワード</label>
-            <%= form.password_field :password, class: "form-control col-sm-8", id: "user_password" %>
+            <%= form.password_field :password, class: "form-control col-sm-7", id: "user_password" %>
         </div>
-        <div class="form-group row">
-            <input type="submit" class="btn btn-info col-sm-12" role: "button" value="ログイン">
+        <div class="form-group row justify-content-center">
+            <input type="submit" class="btn btn-info col-sm-10" role: "button" value="ログイン">
         </div>
       <% end %>
-      <div class="form-group row">
-        <%= link_to("新規登録", "/users/new", role: "button" , class: "btn btn-outline-primary btn-block" ) %>
+      <div class="form-group row justify-content-center">
+        <%= link_to("新規登録", "/users/new", role: "button" , class: "btn btn-outline-primary btn-block col-sm-10" ) %>
       </div>
     </div>
     ※ログインID：user，パスワード：pass
