@@ -1,3 +1,11 @@
+# 使用言語／環境など
+* Ruby
+* Ruby on Rails
+* Heroku
+* Postgres SQL
+* 
+
+
 # README
 
 This README would normally document whatever steps are necessary to get the
