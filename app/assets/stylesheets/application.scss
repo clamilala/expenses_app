@@ -66,19 +66,28 @@ div .t-frame {
 /* ハンバーガーメニューここから */
 /*ヘッダーまわりはサイトに合わせて調整してください*/
 header {
-  padding:10px;
-  background: skyblue;
+  width: 100%;
+  height: 50px;
+  background: #f4f3ef;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+  position: fixed;
+  z-index: 100;
 }
-
+.header_title {
+  margin-left: 20px;
+  font-size: large;
+}
 #nav-drawer {
+  margin-top: 7px;
   position: relative;
 }
-
 /*チェックボックス等は非表示に*/
 .nav-unshown {
   display:none;
 }
-
 /*アイコンのスペース*/
 #nav-open {
   display: inline-block;
@@ -86,7 +95,6 @@ header {
   height: 22px;
   vertical-align: middle;
 }
-
 /*ハンバーガーアイコンをCSSだけで表現*/
 #nav-open span, #nav-open span:before, #nav-open span:after {
   position: absolute;
@@ -104,7 +112,6 @@ header {
 #nav-open span:after {
   bottom: -16px;
 }
-
 /*閉じる用の薄黒カバー*/
 #nav-close {
   display: none;/*はじめは隠しておく*/
@@ -118,7 +125,6 @@ header {
   opacity: 0;
   transition: .3s ease-in-out;
 }
-
 /*中身*/
 #nav-content {
   overflow: auto;
@@ -134,25 +140,27 @@ header {
   -webkit-transform: translateX(-105%);
   transform: translateX(-105%);/*左に隠しておく*/
 }
-
 /*チェックが入ったらもろもろ表示*/
 #nav-input:checked ~ #nav-close {
   display: block;/*カバーを表示*/
   opacity: .5;
 }
-
 #nav-input:checked ~ #nav-content {
   -webkit-transform: translateX(0%);
   transform: translateX(0%);/*中身を表示（右へスライド）*/
   box-shadow: 6px 0 25px rgba(0,0,0,.15);
 }
-
-@media screen and (min-width:600px) {
+@media screen and (min-width:751px) {
+  .header_title {
+    margin-left: 250px;
+    font-size: large;
+  }
+  
   #nav-open {
     display:none;
   }
 }
-
+/* ハンバーガーメニューここまで */
 
 .hamburger_menu {
   height: 60px;

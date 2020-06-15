@@ -82,18 +82,23 @@
       </div>
     </div>
 
-    <div id="nav-drawer">
-      <input id="nav-input" type="checkbox" class="nav-unshown">
-      <label id="nav-open" for="nav-input"><span></span></label>
-      <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-      <div id="nav-content">
-        <%= link_to "支出の入力", '/payments/new', {class: "btn btn-link btn-block hamburger_menu"} %>
-        <%= link_to "収入の入力", '/incomes/new', {class: "btn btn-link btn-block hamburger_menu"}  %>
-        <%= link_to "入力の一覧", jounal_entries_path, {class: "btn btn-link btn-block hamburger_menu"}  %>
-        <%= link_to "集計表", '/spreadsheets/' , {class: "btn btn-link btn-block hamburger_menu"}%>
-        <%= link_to "設定", "/appsettings", {class: "btn btn-link btn-block hamburger_menu"}  %>
+    <header>
+      <div id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown">
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <div id="nav-content">
+          <%= link_to "支出の入力", '/payments/new', {class: "btn btn-link btn-block hamburger_menu"} %>
+          <%= link_to "収入の入力", '/incomes/new', {class: "btn btn-link btn-block hamburger_menu"}  %>
+          <%= link_to "入力の一覧", jounal_entries_path, {class: "btn btn-link btn-block hamburger_menu"}  %>
+          <%= link_to "集計表", '/spreadsheets/' , {class: "btn btn-link btn-block hamburger_menu"}%>
+          <%= link_to "設定", "/appsettings", {class: "btn btn-link btn-block hamburger_menu"}  %>
+        </div>
       </div>
-    </div>
+      <div class="header_title">
+        家計簿
+      </div>
+    </header>
     <% end %>
 
     <% if current_user %>

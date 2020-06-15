@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   #before_action：アクションの前に特定のメソッドを実行する
   before_action :login_required
   
+  
   private
   
   #ログインしているユーザーを取得するメソッド
