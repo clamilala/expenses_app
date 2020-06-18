@@ -1,3 +1,23 @@
 // Place all the styles related to the incomes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.incomes_title {
+    height: 40px;
+    color: white;
+    font-size: large;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: cornflowerblue;
+
+    display: grid;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.incomes_form {
+    border-color: rgb(231, 231, 231);
+    border-style: solid;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
