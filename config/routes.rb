@@ -28,8 +28,11 @@ Rails.application.routes.draw do
   
   resources :payments
   resources :incomes
-  resources :spreadsheets
   resources :budgets
+
+  #resources :spreadsheets
+  get '/spreadsheets' => 'spreadsheets#index'
+  post '/spreadsheets' => 'spreadsheets#index'
 
   get '/appsettings' => 'appsettings#index'
   
