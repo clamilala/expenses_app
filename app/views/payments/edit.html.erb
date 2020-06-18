@@ -1,13 +1,16 @@
 
-<div class="container align-self-center col-md-6">
+<div class="container align-self-center col-md-7">
 
   <% if @jounal_entry.errors.present? %>
     <% @jounal_entry.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   <% end %>
-      
-  <div class="form-group">
+  
+  <div class="payments_title">
+    <div>支出の編集</div>
+  </div>
+  <div class="form-group payments_form">
       <%= render 'form' %>
   </div>
 </div>

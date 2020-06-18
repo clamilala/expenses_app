@@ -2,11 +2,17 @@
 <!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
 
 <div class="container">
+  <%= form_tag("/spreadsheets", method: "get") do %>
+  <!-- form_tag do -->
+    集計月：<input type="month" id="target_month" name="target_month" value="<%= @target_month.to_s %>">
+    <%= submit_tag("表示") %>
+  <% end %>
+
   <div class="row">
     <table class="table table-bordered">
         <thead class="thead-light text-center">
             <tr>
-                <th class="width:10%">-</th>
+                <th class="width:10%"><%= @year + "年" + @month + "月の集計結果" %></th>
                 <th class="width:30%">分類</th>
 <!--                <th class="width:20%">予算</th> -->
                 <th class="width:20%">集計金額</th>
