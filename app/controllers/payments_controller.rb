@@ -5,13 +5,8 @@ class PaymentsController < ApplicationController
   # GET /JounalEntries
   # GET /JounalEntries.json
   def index
-    if current_user
-      user_id = current_user.id
-    else
-      user_id = nil
-    end
 #    @JounalEntries = JounalEntry.all.order(created_at: :desc)
-    @JounalEntries = JounalEntry.where(user_id: user_id).order(created_at: :desc)
+    @JounalEntries = JounalEntry.where(user_id: current_user.id).order(created_at: :desc)
   end
   
   # GET /JounalEntries/1
@@ -23,13 +18,9 @@ class PaymentsController < ApplicationController
   def new
     @jounal_entry = JounalEntry.new
 
-    if current_user
-      @pay_classifications = PayClassification.where(user_id: current_user.id, list_sgn: true)
-      @wallets = Wallet.where(user_id: current_user.id)
-    else
-      @pay_classifications = PayClassification.where(user_id: nil)
-      @wallets = Wallet.where(user_id: nil)
-    end
+    @pay_classifications = PayClassification.where(user_id: current_user.id, list_sgn: true)
+    @wallets = Wallet.where(user_id: current_user.id)
+
     # = PayType.all
     #pay_ymdに初期値（今日の日付）をセット
     @jounal_entry.ymd = Time.now.strftime("%Y-%m-%d")

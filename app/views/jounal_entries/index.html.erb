@@ -2,6 +2,12 @@
 <!-- application.html.erb の< %= yield %> の部分に、このファイルが挿入される。 -->
 
 <div class="container">
+
+    <%= form_tag("/jounal_entries", method: "get") do %>
+        表示する月：<input type="month" id="target_month" name="target_month" value="<%= @target_month.to_s %>">
+        <%= submit_tag("表示") %>
+    <% end %>
+
     <table class="table table-bordered">
         <thead class="thead-light text-center">
             <tr>

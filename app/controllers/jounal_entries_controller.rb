@@ -6,13 +6,20 @@ class JounalEntriesController < ApplicationController
   # GET /JounalEntries
   # GET /JounalEntries.json
   def index
-    if current_user
-      user_id = current_user.id
-    else
-      user_id = nil
-    end
+    
+    # if 画面で集計月が選択されている then 画面.集計月 else 現在時刻の「yyyy-mm」
+    @target_month = params[:target_month] ? params[:target_month] : (Time.new).to_s.slice(0, 7)
+    # "-" で分割して変数にセット
+    @year, @month  =  @target_month.split("-")
+    # 選択した年月の1日を生成（Timeクラス？）
+    t = Time.new(@year, @month, 1)
+  
+    # t.t.beginning_of_month ：月初
+    # t.end_of_month         ：月末
+
+
     #@jounal_entries = JounalEntry.all.order(created_at: :desc)
-    @jounal_entries = JounalEntry.where(user_id: user_id).order(created_at: :desc)
+    @jounal_entries = JounalEntry.where(user_id: current_user.id, ymd: (t.beginning_of_month)..(t.end_of_month)).order(created_at: :desc)
 
     
   end
@@ -26,13 +33,9 @@ class JounalEntriesController < ApplicationController
   def payment_new
     @jounal_entry = JounalEntry.new
 
-    if current_user
-      @pay_classifications = PayClassification.where(user_id: current_user.id)
-      @wallets = Wallet.where(user_id: current_user.id)
-    else
-      @pay_classifications = PayClassification.where(user_id: nil)
-      @wallets = Wallet.where(user_id: nil)
-    end
+    @pay_classifications = PayClassification.where(user_id: current_user.id)
+    @wallets = Wallet.where(user_id: current_user.id)
+
     # = PayType.all
     #pay_ymdに初期値（今日の日付）をセット
     @jounal_entry.ymd = Time.now.strftime("%Y-%m-%d")
@@ -42,15 +45,11 @@ class JounalEntriesController < ApplicationController
 
   # GET /JounalEntries/new
   def new
-    @jounal_entry = JounalEntry.new
+    @jounal_entry = JounalEntry.new 
+    
+    @pay_classifications = PayClassification.where(user_id: current_user.id)
+    @wallets = Wallet.where(user_id: current_user.id)
 
-    if current_user
-      @pay_classifications = PayClassification.where(user_id: current_user.id)
-      @wallets = Wallet.where(user_id: current_user.id)
-    else
-      @pay_classifications = PayClassification.where(user_id: nil)
-      @wallets = Wallet.where(user_id: nil)
-    end
     # = PayType.all
     #pay_ymdに初期値（今日の日付）をセット
     @jounal_entry.ymd = Time.now.strftime("%Y-%m-%d")
