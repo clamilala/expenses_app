@@ -1,7 +1,6 @@
 class SpreadsheetsController < ApplicationController
 
   def index
-
     # ユーザーに紐づく収入分類を取得
     @income_classifications = IncomeClassification.where(user_id: current_user.id, list_sgn: true).order(order_seq: :asc)
 
@@ -29,7 +28,7 @@ class SpreadsheetsController < ApplicationController
     # ハッシュ宣言（aggregate：集計）
     @income_aggregate = {}
     # 収入の合計額を取得してハッシュに変換
-    @income_aggregate = JounalEntry.where(ymd: (t.beginning_of_month)..(t.end_of_month)).group(:income_classification_id).sum(:income_amount).to_h
+    @income_aggregate = JounalEntry.where(user_id: current_user.id, ymd: (t.beginning_of_month)..(t.end_of_month)).group(:income_classification_id).sum(:income_amount).to_h
     ## SELECT SUM(income_amount)
     ## FROM JounalEntry
     ## WHERE ymd BETWEEN t.beginning_of_month AND t.end_of_month
@@ -38,7 +37,7 @@ class SpreadsheetsController < ApplicationController
     # ハッシュ宣言（aggregate：集計）
     @pay_aggregate = {}
     # 支出の合計額を取得てハッシュに変換
-    @pay_aggregate = JounalEntry.where(ymd: (t.beginning_of_month)..(t.end_of_month)).group(:pay_classification_id).sum(:pay_amount).to_h
+    @pay_aggregate = JounalEntry.where(user_id: current_user.id, ymd: (t.beginning_of_month)..(t.end_of_month)).group(:pay_classification_id).sum(:pay_amount).to_h
     
     @active_page = "集計表"
   end
