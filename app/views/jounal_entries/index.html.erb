@@ -4,7 +4,8 @@
 <div class="container">
 
     <%= form_tag("/jounal_entries", method: "get") do %>
-        表示する月：<input type="month" id="target_month" name="target_month" value="<%= @target_month.to_s %>">
+        <label for="target_month">表示する月：</label>
+        <input type="month" max="9999-12" id="target_month" name="target_month" value="<%= @target_month.to_s %>">
         <%= submit_tag("表示") %>
     <% end %>
 

@@ -51,10 +51,12 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
   gem 'rspec-rails', '~> 3.7'
 
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  # chromedriver-helperは2019年3月にサポート終了
+  # 作者はwebdriversへの移行を推奨している
+  # gem 'chromedriver-helper'
   gem 'webdrivers'
 end
 
