@@ -171,6 +171,16 @@ header {
   padding-top: 12px;
 }
 
+/* 入力用フォームで、入力欄とエラーメッセージ領域をまとめるフレーム */
+.form_control_frame {
+  padding: 0 0 0 0;
+}
+
+.error_message_p {
+  color: red;
+}
+
+
 footer{
 /*  width: 100%;
   height: 50px;
