@@ -2,30 +2,71 @@
 <!-- < %= form_tag(jounal_entries_path) do %>--->
 
 <%= form_with model: @jounal_entry , local: true do |form| %>
+  <!-- 日付 --->
   <div class="form-group row">
+    <!-- フォームラベル --->
     <label class="col-sm-3 col-form-label" for="ymd">日付</label>
-    <%= form.date_field :ymd, class: "form-control col-sm-9", id: "ymd" %>
+    <!-- フォームコントロール --->
+    <div class="form_control_frame col-sm-9">
+      <!-- 日付入力欄 --->
+      <%= form.date_field :ymd, class: "form-control", id: "ymd" %>
+      <!-- エラーメッセージ用 p --->
+      <p class="error_message_p" id="ymd_message"></p>
+    </div>
   </div>
+  <!-- 分類 --->
   <div class="form-group row">
-      <label class="col-sm-3 col-form-label" for="pay_type_name">分類</label>
-      <%= form.collection_select(:pay_classification_id, @pay_classifications, :id, :name, {prompt: nil}, {class: "form-control col-sm-9"})  %>
+    <!-- フォームラベル --->
+    <label class="col-sm-3 col-form-label" for="pay_type_name">分類</label>
+    <!-- フォームコントロール --->
+    <div class="form_control_frame col-sm-9">
+      <!-- 分類選択欄 --->
+      <%= form.collection_select(:pay_classification_id, @pay_classifications, :id, :name, {prompt: nil}, {class: "form-control"})  %>
+      <!-- エラーメッセージ用 p --->
+      <p class="error_message_p" id="pay_classifications_message"></p>
+    </div>
   </div>
+  <!-- 金額 --->
   <div class="form-group row">
+      <!-- フォームラベル --->
       <label class="col-sm-3 col-form-label" for="pay_amount">金額</label>
-      <%= form.number_field :pay_amount, class: "form-control col-sm-9", id: "pay_amount" %>
+      <!-- フォームコントロール --->
+      <div class="form_control_frame col-sm-9">
+        <!-- 金額入力欄 --->
+        <%= form.number_field :pay_amount, class: "form-control", id: "pay_amount", min: 0%>
+        <!-- エラーメッセージ用 p --->
+        <p class="error_message_p" id="pay_amount_message"></p>
+      </div>
   </div>
+  <!-- 財布／口座 --->
   <div class="form-group row">
+    <!-- フォームラベル --->
     <label class="col-sm-3 col-form-label" for="pay_type_name">財布／口座</label>
-    <%= form.collection_select(:wallet_id, @wallets, :id, :name, {prompt: nil}, {class: "form-control col-sm-9"})  %>
+    <!-- フォームコントロール --->
+    <div class="form_control_frame col-sm-9">
+      <!-- 財布／口座入力欄 --->
+      <%= form.collection_select(:wallet_id, @wallets, :id, :name, {prompt: nil}, {class: "form-control"})  %>
+      <!-- エラーメッセージ用 p --->
+      <p class="error_message_p" id="wallets_message"></p>
+    </div>
   </div>
+  <!-- 備考 --->
   <div class="form-group row">
-      <label class="col-sm-3 col-form-label" for="remarks">備考</label>
-      <%= form.text_field :remarks, class: "form-control col-sm-9", id: "remarks" %>
+    <!-- フォームラベル --->
+    <label class="col-sm-3 col-form-label" for="remarks">備考</label>
+    <!-- フォームコントロール --->
+    <div class="form_control_frame col-sm-9">
+      <!-- 備考入力欄 --->
+      <%= form.text_field :remarks, class: "form-control", id: "remarks" %>
+      <!-- エラーメッセージ用 p --->
+      <p class="error_message_p" id="remarks_message"></p>
+    </div>
   </div>
   <input type="hidden" name="jounal_entry[income_classification_id]" value="999">
   <input type="hidden" name="jounal_entry[income_amount]" value=0>
   <div class="form-group row justify-content-between">
-        <input type="submit" class="btn btn-info col-sm" value="登録">
+        <input type="submit" class="btn btn-info col-sm" value="登録" id="commit">
         <%= link_to 'キャンセル', jounal_entries_path, class:"btn btn-secondary col-sm", role: "button"%>
   </div>
 <% end %> 
+
