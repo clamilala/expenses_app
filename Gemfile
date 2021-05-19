@@ -9,7 +9,7 @@ end
 gem 'rails', '~> 5.1.7'
 
 # アプリケーションサーバー
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 
 # Sass(CSSの拡張言語)を使うためのGem
 gem 'sass-rails', '~> 5.0'
